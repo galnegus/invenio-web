@@ -1,8 +1,95 @@
+/* general style */
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
+
+h1 {
+  margin: 0;
+}
+
+/* wrapper */
+#wrapper {
+  margin: 0 auto;
+  width: 1024px;
+}
+
+/* sidebar */
+#sidebar {
+  float: left;
+  margin: 0 20px 0 0;
+}
+
+/* logo */
+#logo {
+  
+}
+
+/* navigation */
+#navigation {
+	width: 100%;
+  text-align: center;
+}
+
+  #navigation > ul {
+  	list-style-type: none;
+  	padding: 0;
+    vertical-align: middle;
+  }
+
+    #navigation > ul > li {
+    	margin: 0 auto;
+    }
+
+      #navigation > ul > li > a {
+        border: 1px #ccc solid;
+        border-radius: 5px;
+        color: #555;
+        display: block;
+        font-size: 16px;
+        margin: 10px 0 0 10px;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+
+        background: -webkit-linear-gradient(#f8f8f8, #eee); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(#f8f8f8, #eee); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(#f8f8f8, #eee); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(#f8f8f8, #eee); /* Standard syntax */
+      }
+
+      #navigation > ul > li > a:hover {
+        background: -webkit-linear-gradient(#eee, #e8e8e8); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(#eee, #e8e8e8); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(#eee, #e8e8e8); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(#eee, #e8e8e8); /* Standard syntax */
+      }
+
+      #navigation > ul > li > a.selected {
+        background-color: #ff8202;
+
+        background: -webkit-linear-gradient(#ffa03f, #ff8202); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(#ffa03f, #ff8202); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(#ffa03f, #ff8202); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(#ffa03f, #ff8202); /* Standard syntax */
+      }
+
+/* content */
+#content {
+  background-color: #f8f8f8;
+  border: 1px #eee solid;
+  height: 100%;
+  min-height: 500px;
+  overflow: hidden;
+  padding: 10px;  
+
+-webkit-box-shadow: 2px 2px 0px 0px rgba(150, 150, 150, 0.75);
+-moz-box-shadow:    2px 2px 0px 0px rgba(150, 150, 150, 0.75);
+box-shadow:         2px 2px 0px 0px rgba(150, 150, 150, 0.75);
+}
+
+/* other */

@@ -1,9 +1,41 @@
 doctype html
 html
   head
-    title= title
-    script(text='text/javascript' scr='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js')
+    title Invenio Server Admin
+    script(text='text/javascript', src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js')
+    script(text='text/javascript', src='/javascripts/core.js')
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    div
-    block content
+    div#wrapper
+
+      block selectedLink
+        -var selected = '/';
+
+      -var nav = [['Start', '/'], ['List Users', '/users'], ['Add User', '#'], ['List Beacons', '#'], ['Add Beacon', '#']];
+
+      div#sidebar
+        div#logo
+          img(src='images/logo.png')
+        div#navigation
+          ul
+            each val, index in nav
+              mixin navlink
+                if selected === val[1]
+                  a.selected(href=val[1], title=val[0])= val[0]
+                else
+                  a(href=val[1], title=val[0])= val[0]
+              if nav.length == 1
+                li.first.last
+                  +navlink()
+              else if index == nav.length - 1
+                li.last
+                  +navlink()
+              else if index == 0
+                li.first
+                  +navlink()
+              else
+                li
+                  +navlink()
+      div#content
+        block content
