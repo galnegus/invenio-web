@@ -45,13 +45,18 @@ h1 {
     	margin: 0 auto;
     }
 
+      #navigation > ul > li > h2 {
+        font-size: 20px;
+        margin: 15px 0 0 0;
+      }
+
       #navigation > ul > li > a {
         border: 1px #ccc solid;
         border-radius: 5px;
         color: #555;
         display: block;
         font-size: 16px;
-        margin: 10px 0 0 10px;
+        margin: 10px 0 0 0;
         padding: 10px;
         text-align: center;
         text-decoration: none;
@@ -87,9 +92,9 @@ h1 {
   overflow: hidden;
   padding: 10px;  
 
--webkit-box-shadow: 2px 2px 0px 0px rgba(150, 150, 150, 0.75);
--moz-box-shadow:    2px 2px 0px 0px rgba(150, 150, 150, 0.75);
-box-shadow:         2px 2px 0px 0px rgba(150, 150, 150, 0.75);
+-webkit-box-shadow: 2px 2px 0px 0px rgba(180, 180, 180, 0.75);
+-moz-box-shadow:    2px 2px 0px 0px rgba(180, 180, 180, 0.75);
+box-shadow:         2px 2px 0px 0px rgba(180, 180, 180, 0.75);
 }
 
 /* other */
