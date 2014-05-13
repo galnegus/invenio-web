@@ -50,33 +50,13 @@ h1 {
         margin: 15px 0 0 0;
       }
 
-      #navigation > ul > li > a {
-        border: 1px #ccc solid;
-        border-radius: 5px;
-        color: #555;
-        display: block;
-        font-size: 16px;
+      #navigation > ul > li > a.button {
+        font-size: 14px;
         margin: 10px 0 0 0;
         padding: 10px;
-        text-align: center;
-        text-decoration: none;
-
-        background: -webkit-linear-gradient(#f8f8f8, #eee); /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(#f8f8f8, #eee); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(#f8f8f8, #eee); /* For Firefox 3.6 to 15 */
-        background: linear-gradient(#f8f8f8, #eee); /* Standard syntax */
       }
 
-      #navigation > ul > li > a:hover {
-        background: -webkit-linear-gradient(#eee, #e8e8e8); /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(#eee, #e8e8e8); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(#eee, #e8e8e8); /* For Firefox 3.6 to 15 */
-        background: linear-gradient(#eee, #e8e8e8); /* Standard syntax */
-      }
-
-      #navigation > ul > li > a.selected {
-        background-color: #ff8202;
-
+      #navigation > ul > li > a.button.selected {
         background: -webkit-linear-gradient(#ffa03f, #ff8202); /* For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(#ffa03f, #ff8202); /* For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(#ffa03f, #ff8202); /* For Firefox 3.6 to 15 */
@@ -98,3 +78,31 @@ box-shadow:         2px 2px 0px 0px rgba(180, 180, 180, 0.75);
 }
 
 /* other */
+a.button {
+  display: block;
+  border: 1px #ccc solid;
+  border-radius: 5px;
+  color: #555;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+
+  background: -webkit-linear-gradient(#f8f8f8, #eee); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#f8f8f8, #eee); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#f8f8f8, #eee); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#f8f8f8, #eee); /* Standard syntax */
+}
+
+a.button:hover {
+  background: -webkit-linear-gradient(#eee, #ddd); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#eee, #ddd); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#eee, #ddd); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#eee, #ddd); /* Standard syntax */
+}
+
+a.button:active {
+  background: -webkit-linear-gradient(#fff5eb, #ddd); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#fff5eb, #ddd); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#fff5eb, #ddd); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#fff5eb, #ddd); /* Standard syntax */
+}

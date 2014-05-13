@@ -14,7 +14,9 @@ block content
     tbody
       each user, index in users
         tr
-          td= user.name
-          td= user.department
-          td x
-          td x
+          td= user.firstName
+          td= user.lastName
+          td
+            a.button(href='#') Edit
+          td
+            a.button(href='#') Delete

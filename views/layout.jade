@@ -12,12 +12,12 @@ html
       block selectedLink
         -var selected = '/';
 
-      -var nav = [['Start', '/'], 'Edit/Delete', ['List Users', '/users'], ['List Beacons', '#'], 'Add', ['Add User', '#'], ['Add Beacon', '#']];
+      -var nav = [['Start', '/'], 'Edit/Delete', ['List Users', '/users'], ['List Beacons', '/beacons'], 'Add', ['Add User', '/add/user'], ['Add Beacon', '/add/beacon']];
 
       div#sidebar
         div#logo
           a(href='/')
-            img(src='images/logo.png')
+            img(src='/images/logo.png')
         div#navigation
           ul
             each val, index in nav
@@ -27,9 +27,9 @@ html
               else
                 mixin navlink
                   if selected === val[1]
-                    a.selected(href=val[1], title=val[0])= val[0]
+                    a.button.selected(href=val[1], title=val[0])= val[0]
                   else
-                    a(href=val[1], title=val[0])= val[0]
+                    a.button(href=val[1], title=val[0])= val[0]
                 if nav.length == 1
                   li.first.last
                     +navlink()

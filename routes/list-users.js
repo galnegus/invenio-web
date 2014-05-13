@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-users = [{'name': 'tobias', 'department': 'dev'},
-          {'name': 'tobias2', 'department': 'sleep'}];
+users = [{'firstName': 'tobias', 'lastName': 'gg'},
+          {'firstName': 'tobias2', 'lastName': 'qq'}];
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-  res.render('users', users);
+  res.render('list-users', users);
 });
 
 module.exports = router;

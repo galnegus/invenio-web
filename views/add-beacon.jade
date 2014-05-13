@@ -1,0 +1,12 @@
+extends layout
+
+block selectedLink
+  -var selected = '/add/beacon';
+
+block content
+  h1 Add Beacon
+  div
+    input(type='input')
+    input(type='input')
+    input(type='input')
+    input(type='submit', value='add')

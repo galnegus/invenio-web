@@ -1,0 +1,26 @@
+extends layout
+
+block selectedLink
+  -var selected = '/beacons';
+
+block content
+  h1 Beacon List
+  table
+    thead
+      th Major
+      th Minor
+      th Room
+      th Department
+      th Edit
+      th Delete
+    tbody
+      each beacon, index in beacons
+        tr
+          td= beacon.major
+          td= beacon.minor
+          td= beacon.room
+          td= beacon.department
+          td
+            a.button(href='#') Edit
+          td
+            a.button(href='#') Delete
