@@ -1,0 +1,24 @@
+extends layout
+
+block selectedLink
+  -var selected = '/add/role';
+
+block content-head
+  h1 Add Role
+
+block content-body
+  form#add-edit(method='post')
+    table
+      tbody
+        tr
+          td
+            label(for='role_title') Role title
+
+        tr
+          td
+            input.text(type='input', name='role_title', id='role_title', required)
+
+        tr
+          td(colspan='2')
+            input.button(type='submit', value='Add role')
+         

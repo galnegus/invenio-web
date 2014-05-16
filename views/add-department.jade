@@ -1,0 +1,24 @@
+extends layout
+
+block selectedLink
+  -var selected = '/add/department';
+
+block content-head
+  h1 Add Department
+
+block content-body
+  form#add-edit(method='post')
+    table
+      tbody
+        tr
+          td
+            label(for='department_name') Department name
+
+        tr
+          td
+            input.text(type='input', name='department_name', id='department_name', required)
+
+        tr
+          td(colspan='2')
+            input.button(type='submit', value='Add department')
+         

@@ -1,9 +1,14 @@
 var express = require('express');
+var mysql = require('../db_helper.js');
 var router = express.Router();
 
-/* GET beacon adding. */
 router.get('/', function(req, res) {
-  res.render('add-beacon');
+  departments = ['none','aaaaa','bbbbb'];
+  rooms = ['none', '123', '546'];
+
+  res.render('add-beacon', {departments: departments, rooms: rooms});
 });
+
+
 
 module.exports = router;

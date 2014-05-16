@@ -1,0 +1,28 @@
+extends layout
+
+block selectedLink
+  -var selected = '/add/room';
+
+block content-head
+  h1 Add Room
+
+block content-body
+  form#add-edit(method='post')
+    table
+      tbody
+        tr
+          td
+            label(for='room_name') Room Name
+          td
+            label(for='department') Department
+        tr
+          td
+            input.text(type='input', name='room_name', id='room_name', required)
+          td
+            select.text(name='department', id='department', required)
+              each department in departments
+                option(value=department)= department
+        tr
+          td(colspan='2')
+            input.button(type='submit', value='Add room')
+         

@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    link(href='//fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800', rel='stylesheet', type="text/css")
     title Invenio Server Admin
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js')
     script(src='/javascripts/angular-route.min.js')
@@ -12,12 +13,12 @@ html
       block selectedLink
         -var selected = '/';
 
-      -var nav = [['Start', '/'], 'Edit/Delete', ['List Users', '/users'], ['List Beacons', '/beacons'], 'Add', ['Add User', '/add/user'], ['Add Beacon', '/add/beacon']];
+      -var nav = ['Edit/Delete', ['List Users', '/users'], ['List Roles', '/roles'], ['List Departments', '/departments'], ['List Rooms', '/rooms'], ['List Beacons', '/beacons'], 'Add', ['Add User', '/add/user'], ['Add Role', '/add/role'], ['Add Department', '/add/department'], ['Add Room', '/add/room'], ['Add Beacon', '/add/beacon']];
 
       div#sidebar
-        div#logo
-          a(href='/')
-            img(src='/images/logo.png')
+        //div#logo
+        //  a(href='/')
+        //    img(src='/images/logo.png')
         div#navigation
           ul
             each val, index in nav
@@ -25,22 +26,14 @@ html
                 li
                   h2= val
               else
-                mixin navlink
-                  if selected === val[1]
+                if selected === val[1]
+                  li
                     a.button.selected(href=val[1], title=val[0])= val[0]
-                  else
-                    a.button(href=val[1], title=val[0])= val[0]
-                if nav.length == 1
-                  li.first.last
-                    +navlink()
-                else if index == nav.length - 1
-                  li.last
-                    +navlink()
-                else if index == 0
-                  li.first
-                    +navlink()
                 else
                   li
-                    +navlink()
-      div#content(ng-view)
-        block content
+                    a.button(href=val[1], title=val[0])= val[0]
+      div#content-head
+          block content-head
+      div#content
+        div#content-body
+          block content-body

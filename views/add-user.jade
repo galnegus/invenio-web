@@ -3,10 +3,37 @@ extends layout
 block selectedLink
   -var selected = '/add/user';
 
-block content
+block content-head
   h1 Add User
-  div
-    input(type='input')
-    input(type='input')
-    input(type='input')
-    input(type='submit', value='add')
+
+block content-body
+  form#add-edit(method='post')
+    table
+      tbody
+        tr
+          td
+            label(for='user_id') User ID (max. 6 characters)
+          td
+            label(for='password') Password
+        tr
+          td
+            input.text(type='input', name='user_id', id='user_id', required, pattern='^[a-zA-Z0-9]{0,6}$')
+          td
+            input.text(type='input', name='password', id='password', required)
+
+        tr
+          td
+            label(for='first_name') First name
+          td
+            label(for='last_name') Last name
+
+        tr
+          td
+            input.text(type='input', name='first_name', id='first_name', required)
+          td
+            input.text(type='input', name='last_name', id='last_name', required)
+
+        tr
+          td(colspan='2')
+            input.button(type='submit', value='Add user')
+         

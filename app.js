@@ -7,9 +7,15 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var listUsers = require('./routes/list-users');
+var listRoles = require('./routes/list-roles');
 var listBeacons = require('./routes/list-beacons');
+var listDepartments = require('./routes/list-departments');
+var listRooms = require('./routes/list-rooms');
 var addUser = require('./routes/add-user');
 var addBeacon = require('./routes/add-beacon');
+var addRoom = require('./routes/add-room');
+var addDepartment = require('./routes/add-department');
+var addRole = require('./routes/add-role');
 
 var app = express();
 
@@ -32,9 +38,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', listUsers);
+app.use('/roles', listRoles);
+app.use('/departments', listDepartments);
 app.use('/beacons', listBeacons);
+app.use('/rooms', listRooms);
 app.use('/add/user/', addUser);
+app.use('/add/role/', addRole);
 app.use('/add/beacon', addBeacon);
+app.use('/add/room', addRoom);
+app.use('/add/department', addDepartment);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

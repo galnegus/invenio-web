@@ -1,32 +1,27 @@
 /* general style */
 body {
+  color: #555;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
   padding: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
-
-h1 {
-  margin: 0;
-}
+  h1 {
+    margin: 0;
+  }
 
 /* wrapper */
 #wrapper {
   margin: 0 auto;
-  width: 1024px;
+  width: 950px;
 }
 
 /* sidebar */
 #sidebar {
   float: left;
   margin: 0 20px 0 0;
-}
-
-/* logo */
-#logo {
-  
+  padding: 11px 0 0 0;
+  width: 200px;
 }
 
 /* navigation */
@@ -46,12 +41,17 @@ h1 {
     }
 
       #navigation > ul > li > h2 {
-        font-size: 20px;
+        border-width: 0 0 2px 0;
+        border-style: solid;
+        border-color: #999;
+        font-size: 18px;
         margin: 15px 0 0 0;
+        padding: 0 0 5px 0;
       }
 
       #navigation > ul > li > a.button {
         font-size: 14px;
+        font-weight: bold;
         margin: 10px 0 0 0;
         padding: 10px;
       }
@@ -65,20 +65,51 @@ h1 {
 
 /* content */
 #content {
-  background-color: #f8f8f8;
-  border: 1px #eee solid;
+  background-color: #f9f9f9;
+  border: 1px #e8e8e8 solid;
   height: 100%;
-  min-height: 500px;
   overflow: hidden;
-  padding: 10px;  
 
--webkit-box-shadow: 2px 2px 0px 0px rgba(180, 180, 180, 0.75);
--moz-box-shadow:    2px 2px 0px 0px rgba(180, 180, 180, 0.75);
-box-shadow:         2px 2px 0px 0px rgba(180, 180, 180, 0.75);
+  -webkit-box-shadow: 1px 2px 3px 0px rgba(180, 180, 180, 0.5);
+  -moz-box-shadow:    1px 2px 3px 0px rgba(180, 180, 180, 0.5);
+  box-shadow:         1px 2px 3px 0px rgba(180, 180, 180, 0.5);
 }
 
-/* other */
-a.button {
+#content-head {
+  border-width: 0 0 2px 0;
+  border-color: #999;
+  border-style: solid;
+
+  height: 35px;
+
+  margin: 0 0 10px 0;
+  overflow: hidden;
+  padding: 10px 15px 10px 25px;
+
+}
+
+#content-head > h1 {
+  float: left;
+  font-size: 20px;
+  padding: 13px 0 0 0;
+  color: #555;
+  /* text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1); */
+}
+
+#content-head > input {
+  display: block;
+  float: right;
+  padding: 5px;
+
+  width: 200px;
+}
+
+  #content > #content-body {
+    padding: 10px 15px 15px 15px;
+  }
+
+/* button */
+.button {
   display: block;
   border: 1px #ccc solid;
   border-radius: 5px;
@@ -93,16 +124,98 @@ a.button {
   background: linear-gradient(#f8f8f8, #eee); /* Standard syntax */
 }
 
-a.button:hover {
+.button:hover {
   background: -webkit-linear-gradient(#eee, #ddd); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#eee, #ddd); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#eee, #ddd); /* For Firefox 3.6 to 15 */
   background: linear-gradient(#eee, #ddd); /* Standard syntax */
 }
 
-a.button:active {
-  background: -webkit-linear-gradient(#fff5eb, #ddd); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#fff5eb, #ddd); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#fff5eb, #ddd); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#fff5eb, #ddd); /* Standard syntax */
+.button:focus, .button:active {
+  outline: none;
+
+  background: -webkit-linear-gradient(#eee, #fff5eb); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#eee, #fff5eb); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#eee, #fff5eb); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#eee, #fff5eb); /* Standard syntax */
+}
+
+/* table */
+table#list {
+  width: 100%;
+}
+
+table#list th {
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: #aaa;
+  padding: 10px 20px;
+}
+
+table#list td {
+  padding: 10px 10px 0 10px;
+  text-align: center;
+}
+
+/* add/edit form table */
+form#add-edit {
+  width: 600px;
+  margin: 20px auto;
+}
+
+form#add-edit table {
+  width: 100%;
+}
+
+form#add-edit td {
+  padding: 2px 20px;
+  width: 50%;
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+form#add-edit input.text, form#add-edit select {
+  border: 1px #ccc solid;
+  border-radius: 5px;
+  color: #555;
+
+  width: 100%;
+  font-size: 14px;
+  padding: 5px;
+
+  background: -webkit-linear-gradient(#fff, #f8f8f8); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#fff, #f8f8f8); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#fff, #f8f8f8); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#fff, #f8f8f8); /* Standard syntax */
+}
+
+form#add-edit input.text:focus, form#add-edit select:focus {
+  border: 1px #ff8202 solid;
+
+  outline: none;
+}
+
+form#add-edit .checkbox {
+  width: 30px;
+  height: 30px;
+
+
+  background: -webkit-linear-gradient(#fff, #f8f8f8); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#fff, #f8f8f8); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#fff, #f8f8f8); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#fff, #f8f8f8); /* Standard syntax */
+}
+
+form#add-edit option {
+  background: #f8f8f8;
+}
+form#add-edit select > option:hover {
+  color: #fff;
+  background: #ff8202;
+}
+
+form#add-edit input.button {
+  margin: 20px 0 0 0;
 }

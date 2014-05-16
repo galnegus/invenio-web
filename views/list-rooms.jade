@@ -1,24 +1,24 @@
 extends layout
 
 block selectedLink
-  -var selected = '/users';
+  -var selected = '/rooms';
 
 block content-head
-  h1 Users
+  h1 Rooms
 
 block content-body
   table#list
     thead
       tr
-        th First name
-        th Last Name
+        th Room Name
+        th Department
         th Edit
         th Delete
     tbody
-      each user, index in users
+      each room, index in rooms
         tr
-          td= user.firstName
-          td= user.lastName
+          td= room.name
+          td= room.department
           td
             a.button(href='#') Edit
           td
