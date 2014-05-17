@@ -53,7 +53,7 @@ body {
         font-size: 14px;
         font-weight: bold;
         margin: 10px 0 0 0;
-        padding: 10px;
+        padding: 8px;
       }
 
       #navigation > ul > li > a.button.selected {
@@ -183,6 +183,7 @@ form#add-edit input.text, form#add-edit select {
 
   width: 100%;
   font-size: 14px;
+  margin: 0 0 10px 0;
   padding: 5px;
 
   background: -webkit-linear-gradient(#fff, #f8f8f8); /* For Safari 5.1 to 6.0 */
