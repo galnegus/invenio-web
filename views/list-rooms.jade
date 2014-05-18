@@ -15,11 +15,15 @@ block content-body
         th Edit
         th Delete
     tbody
-      each room, index in rooms
+      if rooms.length > 0
+        each room, index in rooms
+          tr
+            td= room.room_name
+            td= room.department_name
+            td
+              a.button(href='#') Edit
+            td
+              a.button(href='#') Delete
+      else
         tr
-          td= room.name
-          td= room.department
-          td
-            a.button(href='#') Edit
-          td
-            a.button(href='#') Delete
+          td(colspan="4") There are no rooms

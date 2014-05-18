@@ -10,16 +10,22 @@ block content-body
   table#list
     thead
       tr
+        th User ID
         th First name
         th Last Name
         th Edit
         th Delete
     tbody
-      each user, index in users
+      if users.length > 0
+        each user, index in users
+          tr
+            td= user.user_id
+            td= user.first_name
+            td= user.last_name
+            td
+              a.button(href='#') Edit
+            td
+              a.button(href='#') Delete
+      else
         tr
-          td= user.firstName
-          td= user.lastName
-          td
-            a.button(href='#') Edit
-          td
-            a.button(href='#') Delete
+          td(colspan="5") There are no users

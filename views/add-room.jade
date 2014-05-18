@@ -19,9 +19,9 @@ block content-body
           td
             input.text(type='input', name='room_name', id='room_name', required)
           td
-            select.text(name='department', id='department', required)
+            select.text(name='department_name', id='department_name', required)
               each department in departments
-                option(value=department)= department
+                option(value=department.department_name)= department.department_name
         tr
           td(colspan='2')
             input.button(type='submit', value='Add room')

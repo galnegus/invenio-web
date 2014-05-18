@@ -1,41 +1,75 @@
 var express = require('express');
+var pool = require('../db_helper.js');
 var router = express.Router();
 
 // beacons
 router.get('/beacons', function(req, res) {
-  var beacons = [{'major': '115345345', 'minor': 'de134513v', 'room': 'outside', 'department': '2'},
-          {'major': '35674567', 'minor': '345 wer g', 'room': 'inside', 'department': '4:32'}];
-
-  res.render('list-beacons', {beacons: beacons});
+  pool.getConnection(function(err, connection) {
+    var query = 'CALL getAllBeacons';
+    connection.query(query, function(err, result) {
+      if (err) {
+          console.log(err);
+      }
+      res.render('list-beacons', { beacons: result[0] });
+    });
+    connection.release();
+  });
 });
 
 // departments
 router.get('/departments', function(req, res) {
-  var departments = [{'name': 'aaaaa'}, {'name': 'bbbbb'}];
-
-  res.render('list-departments', {departments: departments});
+  pool.getConnection(function(err, connection) {
+    var query = 'CALL getAllDepartments';
+    connection.query(query, function(err, result) {
+      if (err) {
+          console.log(err);
+      }
+      res.render('list-departments', { departments: result[0] });
+    });
+    connection.release();
+  });
 });
 
 // roles
 router.get('/roles', function(req, res) {
-  var roles = [{'title': 'gg'}, {'title': 'qq'}];
-
-  res.render('list-roles', {roles: roles});
+  pool.getConnection(function(err, connection) {
+    var query = 'CALL getAllRoles';
+    connection.query(query, function(err, result) {
+      if (err) {
+          console.log(err);
+      }
+      res.render('list-roles', { roles: result[0] });
+    });
+    connection.release();
+  });
 });
 
 //rooms
 router.get('/rooms', function(req, res) {
-  var rooms = [{'name': 'inside', 'department': '4711'}, {'name': 'outside', 'department': '432'}];
-
-  res.render('list-rooms', {rooms: rooms});
+  pool.getConnection(function(err, connection) {
+    var query = 'CALL getAllRooms';
+    connection.query(query, function(err, result) {
+      if (err) {
+          console.log(err);
+      }
+      res.render('list-rooms', { rooms: result[0] });
+    });
+    connection.release();
+  });
 });
 
 // users
 router.get('/users', function(req, res) {
-  var users = [{'firstName': 'tobias', 'lastName': 'gg'},
-          {'firstName': 'tobias2', 'lastName': 'qq'}];
-
-  res.render('list-users', {users: users});
+  pool.getConnection(function(err, connection) {
+    var query = 'CALL getAllUsers';
+    connection.query(query, function(err, result) {
+      if (err) {
+          console.log(err);
+      }
+      res.render('list-users', { users: result[0] });
+    });
+    connection.release();
+  });
 });
 
 module.exports = router;

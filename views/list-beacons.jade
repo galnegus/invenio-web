@@ -17,13 +17,17 @@ block content-body
         th Edit
         th Delete
     tbody
-      each beacon, index in beacons
+      if beacons.length > 0
+        each beacon, index in beacons
+          tr
+            td= beacon.major
+            td= beacon.minor
+            td= beacon.room_name
+            td= beacon.department_name
+            td
+              a.button(href='#') Edit
+            td
+              a.button(href='#') Delete
+      else
         tr
-          td= beacon.major
-          td= beacon.minor
-          td= beacon.room
-          td= beacon.department
-          td
-            a.button(href='#') Edit
-          td
-            a.button(href='#') Delete
+          td(colspan="6") There are no beacons

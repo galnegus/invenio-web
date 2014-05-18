@@ -34,13 +34,13 @@ block content-body
 
         tr
           td(colspan='2')
-            label(for='room') Room (Can be left empty)
+            label(for='room') Room (Department)
 
         tr
           td(colspan='2')
             select.text(name='room', id='room', required)
               each room in rooms
-                option(value=room)= room
+                option(value=JSON.stringify(room))= room.room_name + ' (' + room.department_name + ')'
         tr
           td(colspan='2')
             input.button(type='submit', value='Add beacon')

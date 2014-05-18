@@ -14,10 +14,14 @@ block content-body
         th Edit
         th Delete
     tbody
-      each department, index in departments
+      if departments.length >  0
+        each department, index in departments
+          tr
+            td= department.department_name
+            td
+              a.button(href='#') Edit
+            td
+              a.button(href='#') Delete
+      else
         tr
-          td= department.name
-          td
-            a.button(href='#') Edit
-          td
-            a.button(href='#') Delete
+          td(colspan="3") There are no departments
