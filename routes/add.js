@@ -12,8 +12,8 @@ router.get('/beacon', function(req, res) {
       }
 
       res.render('add-beacon', { rooms: result[0] });
+      connection.release();
     });
-    connection.release();
   });
 });
 
@@ -30,9 +30,8 @@ router.post('/beacon', function(req, res) {
           console.log(err);
       }
       res.redirect('/list/beacons');
+      connection.release();
     });
-
-    connection.release();
   });
 });
 
@@ -49,8 +48,8 @@ router.post('/department', function(req, res) {
           console.log(err);
       }
       res.redirect('/list/departments');
+      connection.release();
     });
-    connection.release();
   });
 });
 
@@ -68,8 +67,8 @@ router.post('/role', function(req, res) {
           console.log(err);
       }
       res.redirect('/list/roles');
+      connection.release();
     });
-    connection.release();
   });
 });
 
@@ -83,8 +82,8 @@ router.get('/room', function(req, res) {
       }
 
       res.render('add-room', { departments: result[0] });
+      connection.release();
     });
-    connection.release();
   });
 });
 
@@ -100,8 +99,8 @@ router.post('/room', function(req, res) {
           console.log(err);
       }
       res.redirect('/list/rooms');
+      connection.release();
     });
-    connection.release();
   });
 });
 
@@ -118,9 +117,8 @@ router.post('/user', function(req, res) {
           console.log(err);
       }
       res.redirect('/list/users');
-    });
-
-    connection.release();
+      connection.release();
+    });    
   });
 });
 
