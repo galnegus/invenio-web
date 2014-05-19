@@ -1,10 +1,10 @@
 var express = require('express');
-var pool = require('../db_helper.js');
+var db = require('../db_helper.js');
 var router = express.Router();
 
 // beacons
 router.get('/beacons', function(req, res) {
-  pool.getConnection(function(err, connection) {
+  db.pool.getConnection(function(err, connection) {
     var query = 'CALL getAllBeacons';
     connection.query(query, function(err, result) {
       if (err) {
@@ -19,7 +19,7 @@ router.get('/beacons', function(req, res) {
 
 // departments
 router.get('/departments', function(req, res) {
-  pool.getConnection(function(err, connection) {
+  db.pool.getConnection(function(err, connection) {
     var query = 'CALL getAllDepartments';
     connection.query(query, function(err, result) {
       if (err) {
@@ -34,7 +34,7 @@ router.get('/departments', function(req, res) {
 
 // roles
 router.get('/roles', function(req, res) {
-  pool.getConnection(function(err, connection) {
+  db.pool.getConnection(function(err, connection) {
     var query = 'CALL getAllRoles';
     connection.query(query, function(err, result) {
       if (err) {
@@ -49,7 +49,7 @@ router.get('/roles', function(req, res) {
 
 //rooms
 router.get('/rooms', function(req, res) {
-  pool.getConnection(function(err, connection) {
+  db.pool.getConnection(function(err, connection) {
     var query = 'CALL getAllRooms';
     connection.query(query, function(err, result) {
       if (err) {
@@ -64,7 +64,7 @@ router.get('/rooms', function(req, res) {
 
 // users
 router.get('/users', function(req, res) {
-  pool.getConnection(function(err, connection) {
+  db.pool.getConnection(function(err, connection) {
     var query = 'CALL getAllUsers';
     connection.query(query, function(err, result) {
       if (err) {
