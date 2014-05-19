@@ -4,53 +4,21 @@ var router = express.Router();
 
 // beacon
 router.get('/beacon', function(req, res) {
-  db.pool.getConnection(function(err, connection) {
-    var query = 'CALL getAllRooms';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-
-      res.render('add-beacon', { rooms: result[0] });
-      connection.release();
-    });
-  });
-
-/*
- * WIP promises
- *
-  db.getConnection()
-  .then(function(connection) {
-    return q.nfcall(connection.query(query))
-  })
+  db.query('CALL getAllRooms')
   .then(function(result) {
-    res.render('add-beacon', { rooms: result[0] });
-  })
-  .then(function() {
-    connection.release();
-  })
-  .catch(function(err) {
-    console.log(err)
-  })
-*/
-
+    res.render('add-beacon', { rooms: result[0][0]});
+  });
 });
 
 
-/** BROKEN PROCEDURE : foreign key constraint fails */
 router.post('/beacon', function(req, res) {
-  db.pool.getConnection(function(err, connection) {
-    var roomObject = JSON.parse(req.body.room);
-    var active = (req.body.active == 'yes' ? 1 : 0);
-    var query = 'CALL addBeacon(\'' + req.body.major  + '\', \'' + req.body.minor + '\',\'' + roomObject.department_name + '\', \'' + roomObject.room_name + '\',\'' + active + '\', \'' + req.body.battery + '\')';
-    console.log(query);
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/beacons');
-      connection.release();
-    });
+  var roomObject = JSON.parse(req.body.room);
+  var active = (req.body.active == 'yes' ? 1 : 0);
+  var query = 'CALL addBeacon(\'' + req.body.major  + '\', \'' + req.body.minor + '\',\'' + roomObject.department_name + '\', \'' + roomObject.room_name + '\',\'' + active + '\', \'' + req.body.battery + '\')';
+    
+  db.query(query)
+  .then(function(result) {
+    res.redirect('/list/beacons');
   });
 });
 
@@ -60,66 +28,36 @@ router.get('/department', function(req, res) {
 });
 
 router.post('/department', function(req, res) {
-  db.pool.getConnection(function(err, connection) {
-    var query = 'CALL addDepartment(\'' + req.body.department_name  + '\')';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/departments');
-      connection.release();
-    });
+  db.query('CALL addDepartment(\'' + req.body.department_name  + '\')')
+  .then(function(result) {
+    res.redirect('/list/departments');
   });
 });
 
 // role
 router.get('/role', function(req, res) {
-
   res.render('add-role');
 });
 
 router.post('/role', function(req, res) {
-  db.pool.getConnection(function(err, connection) {
-    var query = 'CALL addRole(\'' + req.body.role_title  + '\')';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/roles');
-      connection.release();
-    });
+  db.query('CALL addRole(\'' + req.body.role_title  + '\')')
+  .then(function(result) {
+    res.redirect('/list/roles');
   });
 });
 
 // room
 router.get('/room', function(req, res) {
-  db.pool.getConnection(function(err, connection) {
-    var query = 'CALL getAllDepartments';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-
-      res.render('add-room', { departments: result[0] });
-      connection.release();
-    });
+  db.query('CALL getAllDepartments')
+  .then(function(result) {
+    res.render('add-room', { departments: result[0][0]});
   });
 });
 
-/**
- * BROKEN PROCEDURE, error: column 'default_room_name_id' cannot be null
- */
 router.post('/room', function(req, res) {
-  db.pool.getConnection(function(err, connection) {
-    var query = 'CALL addRoom(\'' + req.body.room_name  + '\', \'' + req.body.department_name + '\')';
-    console.log(query);
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/rooms');
-      connection.release();
-    });
+  db.query('CALL addRoom(\'' + req.body.room_name  + '\', \'' + req.body.department_name + '\')')
+  .then(function(result) {
+    res.redirect('/list/rooms');
   });
 });
 
@@ -129,15 +67,9 @@ router.get('/user', function(req, res) {
 });
 
 router.post('/user', function(req, res) {
-  db.pool.getConnection(function(err, connection) {
-    var query = 'CALL addUser(\'' + req.body.user_id  + '\', \'' + req.body.first_name + '\', \'' + req.body.last_name + '\', \'' + req.body.password + '\')';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/users');
-      connection.release();
-    });    
+  db.query('CALL addUser(\'' + req.body.user_id  + '\', \'' + req.body.first_name + '\', \'' + req.body.last_name + '\', \'' + req.body.password + '\')')
+  .then(function(result) {
+    res.redirect('/list/users');
   });
 });
 

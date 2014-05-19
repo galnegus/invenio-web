@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var Q = require('q');
 
 var db_config = {
   connectionLimit : 10,
@@ -10,18 +11,24 @@ var db_config = {
   multipleStatements: true
 };
 
-exports.pool = mysql.createPool(db_config);
+var pool = mysql.createPool(db_config);
+exports.pool = pool;
 
-// http://stackoverflow.com/questions/21741496/node-mysql-when-to-release-connection-back-into-pool
-
-exports.getConnection = function(queryParam) {
-  var deferred = q.defer();
-  exports.pool.getConnection(function(err, conn) {
-    if (err) { 
-      deferred.reject(err); 
-    }
-    deferred.resolve(conn);
+exports.query = function(sqlQuery) {
+  return Q.nfcall(pool.getConnection.bind(pool))
+  .then(function(connection) {
+    var result = Q.nfcall(connection.query.bind(connection), sqlQuery);
+    return {result: result, connection: connection};
+  })
+  .then(function(queryObj) {
+    queryObj.connection.release();
+    return queryObj.result;
+  })
+  .then(function(result) {
+    return result;
+  })
+  .catch(function(error) {
+    console.log(error);
+    throw new error;
   });
-};
-
-//module.exports = pool;
+}
