@@ -1,10 +1,10 @@
 extends layout
 
 block selectedLink
-  -var selected = '/add/role';
+  -var selected = (edit ? '' : '/add/role');
 
 block content-head
-  h1 Add Role
+  h1= (edit ? 'Edit Role' : 'Add Role')
 
 block content-body
   form#add-edit(method='post')
@@ -13,11 +13,9 @@ block content-body
         tr
           td
             label(for='role_title') Role title
-
         tr
           td
-            input.text(type='input', name='role_title', id='role_title', required)
-
+            input.text(type='input', name='role_title', id='role_title', required, value=(edit ? edit.role_title : ''))
         tr
           td(colspan='2')
             input.button(type='submit', value='Add role')

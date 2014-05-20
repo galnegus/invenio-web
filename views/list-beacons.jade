@@ -25,7 +25,7 @@ block content-body
             td= beacon.room_name
             td= beacon.department_name
             td
-              a.button(href='#') Edit
+              a.button(href='/edit/beacon/' + beacon.major + '/' + beacon.minor) Edit
             td
               a.button(href='#') Delete
       else

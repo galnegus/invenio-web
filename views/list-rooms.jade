@@ -21,7 +21,7 @@ block content-body
             td= room.room_name
             td= room.department_name
             td
-              a.button(href='#') Edit
+              a.button(href='/edit/room/' + room.default_room_name_id + '/' + room.department_id) Edit
             td
               a.button(href='#') Delete
       else

@@ -23,7 +23,7 @@ block content-body
             td= user.first_name
             td= user.last_name
             td
-              a.button(href='#') Edit
+              a.button(href='/edit/user/' + user.user_id) Edit
             td
               a.button(href='#') Delete
       else

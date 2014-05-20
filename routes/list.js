@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/beacons', function(req, res) {
   db.query('CALL getAllBeacons')
   .then(function(result) {
-    res.render('list-beacons', { beacons: result[0][0]});
+    res.render('list-beacons', { beacons: result[0][0] });
   });
 });
 
@@ -15,7 +15,7 @@ router.get('/beacons', function(req, res) {
 router.get('/departments', function(req, res) {
   db.query('CALL getAllDepartments')
   .then(function(result) {
-    res.render('list-departments', { departments: result[0][0]});
+    res.render('list-departments', { departments: result[0][0] });
   });
 });
 
@@ -23,7 +23,7 @@ router.get('/departments', function(req, res) {
 router.get('/roles', function(req, res) {
   db.query('CALL getAllRoles')
   .then(function(result) {
-    res.render('list-roles', { roles: result[0][0]});
+    res.render('list-roles', { roles: result[0][0] });
   });
 });
 
@@ -31,7 +31,7 @@ router.get('/roles', function(req, res) {
 router.get('/rooms', function(req, res) {
   db.query('CALL getAllRooms')
   .then(function(result) {
-    res.render('list-rooms', { rooms: result[0][0]});
+    res.render('list-rooms', { rooms: result[0][0] });
   });
 });
 
@@ -39,7 +39,7 @@ router.get('/rooms', function(req, res) {
 router.get('/users', function(req, res) {
   db.query('CALL getAllUsers')
   .then(function(result) {
-    res.render('list-users', { users: result[0][0]});
+    res.render('list-users', { users: result[0][0] });
   });
 });
 

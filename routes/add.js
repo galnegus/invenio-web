@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/beacon', function(req, res) {
   db.query('CALL getAllRooms')
   .then(function(result) {
-    res.render('add-beacon', { rooms: result[0][0]});
+    res.render('add-edit-beacon', { rooms: result[0][0] });
   });
 });
 
@@ -24,7 +24,7 @@ router.post('/beacon', function(req, res) {
 
 // department
 router.get('/department', function(req, res) {
-  res.render('add-department');
+  res.render('add-edit-department');
 });
 
 router.post('/department', function(req, res) {
@@ -36,7 +36,7 @@ router.post('/department', function(req, res) {
 
 // role
 router.get('/role', function(req, res) {
-  res.render('add-role');
+  res.render('add-edit-role');
 });
 
 router.post('/role', function(req, res) {
@@ -50,7 +50,7 @@ router.post('/role', function(req, res) {
 router.get('/room', function(req, res) {
   db.query('CALL getAllDepartments')
   .then(function(result) {
-    res.render('add-room', { departments: result[0][0]});
+    res.render('add-edit-room', { departments: result[0][0] });
   });
 });
 
@@ -63,7 +63,7 @@ router.post('/room', function(req, res) {
 
 // user
 router.get('/user', function(req, res) {
-  res.render('add-user');
+  res.render('add-edit-user');
 });
 
 router.post('/user', function(req, res) {

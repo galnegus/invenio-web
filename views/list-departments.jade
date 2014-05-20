@@ -19,7 +19,7 @@ block content-body
           tr
             td= department.department_name
             td
-              a.button(href='#') Edit
+              a.button(href='/edit/department/' + department.department_id) Edit
             td
               a.button(href='#') Delete
       else

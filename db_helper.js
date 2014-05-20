@@ -14,6 +14,8 @@ var db_config = {
 var pool = mysql.createPool(db_config);
 exports.pool = pool;
 
+// https://github.com/felixge/node-mysql/issues/708
+
 exports.query = function(sqlQuery) {
   return Q.nfcall(pool.getConnection.bind(pool))
   .then(function(connection) {

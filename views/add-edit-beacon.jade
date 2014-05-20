@@ -1,0 +1,47 @@
+extends layout
+
+block selectedLink
+  -var selected = (edit ? '' : '/add/beacon');
+
+block content-head
+  h1= (edit ? 'Edit Beacon' : 'Add Beacon')
+
+block content-body
+  form#add-edit(method='post')
+    table
+      tbody
+        tr
+          td
+            label(for='major') Major
+          td
+            label(for='minor') Minor
+        tr
+          td
+            input.text(type='input', name='major', id='major', required, value=(edit ? edit.major : ''))
+          td
+            input.text(type='input', name='minor', id='minor', required, value=(edit ? edit.minor : ''))
+        tr
+          td
+            label(for='battery') Battery percentage (0 to 100)
+          td
+            label(for='active') Active
+
+        tr
+          td
+            input.text(type='input', name='battery', id='battery', required, pattern='^[1-9][0-9]?$|^100$', value=(edit ? edit.battery : ''))
+          td
+            input.checkbox(type='checkbox', name='active', id='active', value='yes', checked=(edit ? (edit.active.readUInt8(0) == 1 ? true : false) : false))
+
+        tr
+          td(colspan='2')
+            label(for='room') Room (Department)
+
+        tr
+          td(colspan='2')
+            select.text(name='room', id='room', required)
+              each room in rooms
+                option(selected=(edit ? (edit.room_name == room.room_name && edit.department_name == room.department_name ? true : false) : false), value=JSON.stringify(room))= room.room_name + ' (' + room.department_name + ')'
+        tr
+          td(colspan='2')
+            input.button(type='submit', value='Add beacon')
+         

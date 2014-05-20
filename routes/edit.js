@@ -1,126 +1,58 @@
 var express = require('express');
-var pool = require('../db_helper.js');
+var db = require('../db_helper.js');
 var router = express.Router();
 
 // beacon
-router.get('/beacon', function(req, res) {
-  pool.getConnection(function(err, connection) {
-    var query = 'CALL getAllRooms';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-
-      res.render('add-beacon', { rooms: result[0] });
-    });
-    connection.release();
-  });
-});
-
-
-/** BROKEN PROCEDURE : foreign key constraint fails */
-router.post('/beacon', function(req, res) {
-  pool.getConnection(function(err, connection) {
-    var roomObject = JSON.parse(req.body.room);
-    var active = (req.body.active == 'yes' ? 1 : 0);
-    var query = 'CALL addBeacon(\'' + req.body.major  + '\', \'' + req.body.minor + '\',\'' + roomObject.department_name + '\', \'' + roomObject.room_name + '\',\'' + active + '\', \'' + req.body.battery + '\')';
-    console.log(query);
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/beacons');
-    });
-
-    connection.release();
+router.get('/beacon/:major/:minor', function(req, res) {
+  var edit;
+  db.query('CALL getBeacon(\'' + req.params.major + '\',\'' + req.params.minor + '\')')
+  .then(function(result) {
+    edit = result[0][0][0];
+  })
+  .then(function() {
+    return db.query('CALL getAllRooms');
+  }) 
+  .then(function(result) {
+    res.render('add-edit-beacon', { rooms: result[0][0], edit: edit });
   });
 });
 
 // department
-router.get('/department', function(req, res) {
-  res.render('add-department');
-});
-
-router.post('/department', function(req, res) {
-  pool.getConnection(function(err, connection) {
-    var query = 'CALL addDepartment(\'' + req.body.department_name  + '\')';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/departments');
-    });
-    connection.release();
+router.get('/department/:id', function(req, res) {
+  db.query('CALL getDepartment(\'' + req.params.id + '\')')
+  .then(function(result) {
+    res.render('add-edit-department', { edit: result[0][0][0] });
   });
 });
 
 // role
-router.get('/role', function(req, res) {
-
-  res.render('add-role');
-});
-
-router.post('/role', function(req, res) {
-  pool.getConnection(function(err, connection) {
-    var query = 'CALL addRole(\'' + req.body.role_title  + '\')';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/roles');
-    });
-    connection.release();
+router.get('/role/:id', function(req, res) {
+  db.query('CALL getRole(\'' + req.params.id + '\')')
+  .then(function(result) {
+    res.render('add-edit-role', { edit: result[0][0][0] });
   });
 });
 
 // room
-router.get('/room', function(req, res) {
-  pool.getConnection(function(err, connection) {
-    var query = 'CALL getAllDepartments';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-
-      res.render('add-room', { departments: result[0] });
-    });
-    connection.release();
-  });
-});
-
-/**
- * BROKEN PROCEDURE, error: column 'default_room_name_id' cannot be null
- */
-router.post('/room', function(req, res) {
-  pool.getConnection(function(err, connection) {
-    var query = 'CALL addRoom(\'' + req.body.room_name  + '\', \'' + req.body.department_name + '\')';
-    console.log(query);
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/rooms');
-    });
-    connection.release();
+router.get('/room/:default_room_name_id/:department_id', function(req, res) {
+  var edit;
+  db.query('CALL getRoom(\'' + req.params.default_room_name_id + '\',\'' + req.params.department_id + '\')')
+  .then(function(result) {
+    edit = result[0][0][0];
+  })
+  .then(function() {
+    return db.query('CALL getAllDepartments');
+  }) 
+  .then(function(result) {
+    res.render('add-edit-room', { departments: result[0][0], edit: edit });
   });
 });
 
 // user
-router.get('/user', function(req, res) {
-  res.render('add-user');
-});
-
-router.post('/user', function(req, res) {
-  pool.getConnection(function(err, connection) {
-    var query = 'CALL addUser(\'' + req.body.user_id  + '\', \'' + req.body.first_name + '\', \'' + req.body.last_name + '\', \'' + req.body.password + '\')';
-    connection.query(query, function(err, result) {
-      if (err) {
-          console.log(err);
-      }
-      res.redirect('/list/users');
-    });
-
-    connection.release();
+router.get('/user/:user_id', function(req, res) {
+  db.query('CALL getUser(\'' + req.params.user_id + '\')')
+  .then(function(result) {
+    res.render('add-edit-user', { edit: result[0][0][0] });
   });
 });
 

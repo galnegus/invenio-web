@@ -1,10 +1,10 @@
 extends layout
 
 block selectedLink
-  -var selected = '/add/user';
+  -var selected = (edit ? '' : '/add/user');
 
 block content-head
-  h1 Add User
+  h1= (edit ? 'Edit User' : 'Add User')
 
 block content-body
   form#add-edit(method='post')
@@ -14,10 +14,10 @@ block content-body
           td
             label(for='user_id') User ID (max. 6 characters)
           td
-            label(for='password') Password
+            label(for='password')= (edit ? 'New password (can be left empty)' : 'Password')
         tr
           td
-            input.text(type='input', name='user_id', id='user_id', required, pattern='^[a-zA-Z0-9]{0,6}$')
+            input.text(type='input', name='user_id', id='user_id', required, pattern='^[a-zA-Z0-9]{0,6}$', value=(edit ? edit.user_id : ''))
           td
             input.text(type='input', name='password', id='password', required)
 
@@ -29,9 +29,9 @@ block content-body
 
         tr
           td
-            input.text(type='input', name='first_name', id='first_name', required)
+            input.text(type='input', name='first_name', id='first_name', required, value=(edit ? edit.first_name : ''))
           td
-            input.text(type='input', name='last_name', id='last_name', required)
+            input.text(type='input', name='last_name', id='last_name', required, value=(edit ? edit.last_name : ''))
 
         tr
           td(colspan='2')

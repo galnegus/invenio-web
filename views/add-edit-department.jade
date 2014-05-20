@@ -1,10 +1,12 @@
 extends layout
 
 block selectedLink
-  -var selected = '/add/department';
+  -var selected = (edit ? '' : '/add/department');
 
 block content-head
-  h1 Add Department
+  h1= (edit ? 'Edit Department' : 'Add Department')
+
+-var department_name = edit.department_name;
 
 block content-body
   form#add-edit(method='post')
@@ -16,7 +18,7 @@ block content-body
 
         tr
           td
-            input.text(type='input', name='department_name', id='department_name', required)
+            input.text(type='input', name='department_name', id='department_name', required, value=(edit ? edit.department_name : ""))
 
         tr
           td(colspan='2')

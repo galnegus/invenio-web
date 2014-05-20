@@ -1,10 +1,10 @@
 extends layout
 
 block selectedLink
-  -var selected = '/add/room';
+  -var selected = (edit ? '' : '/add/room');
 
 block content-head
-  h1 Add Room
+  h1= (edit ? 'Edit Room' : 'Add Room')
 
 block content-body
   form#add-edit(method='post')
@@ -17,11 +17,11 @@ block content-body
             label(for='department') Department
         tr
           td
-            input.text(type='input', name='room_name', id='room_name', required)
+            input.text(type='input', name='room_name', id='room_name', required, value=(edit ? edit.room_name : ''))
           td
             select.text(name='department_name', id='department_name', required)
               each department in departments
-                option(value=department.department_name)= department.department_name
+                option(selected=(edit ? (edit.department_name == department.department_name ? true : false) : false), value=department.department_name)= department.department_name
         tr
           td(colspan='2')
             input.button(type='submit', value='Add room')
