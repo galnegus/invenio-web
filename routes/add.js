@@ -14,7 +14,7 @@ router.get('/beacon', function(req, res) {
 router.post('/beacon', function(req, res) {
   var roomObject = JSON.parse(req.body.room);
   var active = (req.body.active == 'yes' ? 1 : 0);
-  var query = 'CALL addBeacon(\'' + req.body.major  + '\', \'' + req.body.minor + '\',\'' + roomObject.department_name + '\', \'' + roomObject.room_name + '\',\'' + active + '\', \'' + req.body.battery + '\')';
+  var query = 'CALL addBeacon(' + db.pool.escape(req.body.major)  + ',' + db.pool.escape(req.body.minor) + ',' + db.pool.escape(roomObject.department_name) + ',' + db.pool.escape(roomObject.room_name) + ',' + db.pool.escape(active) + ',' + db.pool.escape(req.body.battery) + ')';
     
   db.query(query)
   .then(function(result) {
@@ -28,7 +28,7 @@ router.get('/department', function(req, res) {
 });
 
 router.post('/department', function(req, res) {
-  db.query('CALL addDepartment(\'' + req.body.department_name  + '\')')
+  db.query('CALL addDepartment(' + db.pool.escape(req.body.department_name)  + ')')
   .then(function(result) {
     res.redirect('/list/departments');
   });
@@ -40,7 +40,7 @@ router.get('/role', function(req, res) {
 });
 
 router.post('/role', function(req, res) {
-  db.query('CALL addRole(\'' + req.body.role_title  + '\')')
+  db.query('CALL addRole(' + db.pool.escape(req.body.role_title)  + ')')
   .then(function(result) {
     res.redirect('/list/roles');
   });
@@ -55,7 +55,7 @@ router.get('/room', function(req, res) {
 });
 
 router.post('/room', function(req, res) {
-  db.query('CALL addRoom(\'' + req.body.room_name  + '\', \'' + req.body.department_name + '\')')
+  db.query('CALL addRoom(' + db.pool.escape(req.body.room_name)  + ',' + db.pool.escape(req.body.department_name) + ')')
   .then(function(result) {
     res.redirect('/list/rooms');
   });
@@ -67,7 +67,7 @@ router.get('/user', function(req, res) {
 });
 
 router.post('/user', function(req, res) {
-  db.query('CALL addUser(\'' + req.body.user_id  + '\', \'' + req.body.first_name + '\', \'' + req.body.last_name + '\', \'' + req.body.password + '\')')
+  db.query('CALL addUser(' + db.pool.escape(req.body.user_id)  + ',' + db.pool.escape(req.body.first_name) + ',' + db.pool.escape(req.body.last_name) + ',' + db.pool.escape(req.body.password) + ')')
   .then(function(result) {
     res.redirect('/list/users');
   });

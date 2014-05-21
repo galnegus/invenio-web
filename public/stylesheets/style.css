@@ -149,7 +149,7 @@ table#list th {
   border-width: 0 0 2px 0;
   border-style: solid;
   border-color: #aaa;
-  padding: 10px 20px;
+  padding: 10px 5px;
 }
 
 table#list td {

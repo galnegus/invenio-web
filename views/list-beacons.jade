@@ -14,6 +14,8 @@ block content-body
         th Minor
         th Room
         th Department
+        th Battery
+        th Active
         th Edit
         th Delete
     tbody
@@ -24,6 +26,9 @@ block content-body
             td= beacon.minor
             td= beacon.room_name
             td= beacon.department_name
+            td= beacon.battery + '%'
+            td
+              em= (beacon.active.readUInt8(0) == 1 ? 'yes' : 'no')
             td
               a.button(href='/edit/beacon/' + beacon.major + '/' + beacon.minor) Edit
             td

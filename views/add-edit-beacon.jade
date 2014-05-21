@@ -43,5 +43,5 @@ block content-body
                 option(selected=(edit ? (edit.room_name == room.room_name && edit.department_name == room.department_name ? true : false) : false), value=JSON.stringify(room))= room.room_name + ' (' + room.department_name + ')'
         tr
           td(colspan='2')
-            input.button(type='submit', value=(edit ? 'Edit' : 'Add') + ' beacon')
+            input.button(type='submit', value=(edit ? 'Update' : 'Add') + ' beacon')
          
