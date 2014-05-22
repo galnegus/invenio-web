@@ -38,7 +38,7 @@ router.get('/room/:default_room_name_id/:department_id', function(req, res) {
 router.get('/user/:user_id', function(req, res) {
   db.query('CALL removeUser(' + db.pool.escape(req.params.user_id) + ')')
   .then(function(result) {
-    res.redirect('/list/user');
+    res.redirect('/list/users');
   });
 });
 

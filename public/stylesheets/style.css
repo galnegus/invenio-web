@@ -165,6 +165,10 @@ table#list th.del-col, table#list td.del-col {
   width: 100px;
 }
 
+table#list th.phone-number-col, table#list td.phone-number-col {
+  width: 150px;
+}
+
 /* add/edit form table */
 form#add-edit {
   width: 600px;

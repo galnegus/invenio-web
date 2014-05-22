@@ -119,7 +119,7 @@ router.post('/phone-number-type/:phone_number_type_id', function(req, res) {
 // user phone number
 router.get('/user-phone-number/:user_id/:phone_number', function(req, res) {
   var edit;
-  db.query('CALL getTypeOfPhoneNumber(' + req.params.phone_number + ')')
+  db.query('CALL getTypeOfPhoneNumber(' + db.pool.escape(req.params.phone_number) + ')')
   .then(function(result) {
     edit = result[0][0][0];
   })
@@ -127,6 +127,7 @@ router.get('/user-phone-number/:user_id/:phone_number', function(req, res) {
     return db.query('CALL getAllPhoneNumberTypes');
   })
   .then(function(result) {
+    console.log(edit);
     res.render('add-edit-user-phone-number', { edit: edit, phone_number: req.params.phone_number, phone_number_types: result[0][0] });
   });
 });
