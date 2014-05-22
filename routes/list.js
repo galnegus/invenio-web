@@ -43,4 +43,20 @@ router.get('/users', function(req, res) {
   });
 });
 
+// phone number types
+router.get('/phone-number-types', function(req, res) {
+  db.query('CALL getAllPhoneNumberTypes')
+  .then(function(result) {
+    res.render('list-phone-number-types', { phone_number_types: result[0][0] });
+  });
+});
+
+// user phone numbers
+router.get('/user-phone-numbers/:user_id', function(req, res) {
+  db.query('CALL getPhoneNumbers(' + db.pool.escape(req.params.user_id) + ')')
+  .then(function(result) {
+    res.render('list-user-phone-numbers', { user_id: req.params.user_id, phone_numbers: result[0][0] });
+  });
+});
+
 module.exports = router;

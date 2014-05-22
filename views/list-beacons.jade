@@ -16,8 +16,8 @@ block content-body
         th Department
         th Battery
         th Active
-        th Edit
-        th Delete
+        th.edit-col Edit
+        th.del-col Delete
     tbody
       if beacons.length > 0
         each beacon, index in beacons
@@ -32,7 +32,7 @@ block content-body
             td
               a.button(href='/edit/beacon/' + beacon.major + '/' + beacon.minor) Edit
             td
-              a.button(href='#') Delete
+              a.button(href='/delete/beacon/' + beacon.major + '/' + beacon.minor) Delete
       else
         tr
           td(colspan="6") There are no beacons

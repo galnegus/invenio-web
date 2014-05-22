@@ -11,8 +11,8 @@ block content-body
     thead
       tr
         th Department name
-        th Edit
-        th Delete
+        th.edit-col Edit
+        th.del-col Delete
     tbody
       if departments.length >  0
         each department, index in departments
@@ -21,7 +21,7 @@ block content-body
             td
               a.button(href='/edit/department/' + department.department_id) Edit
             td
-              a.button(href='#') Delete
+              a.button(href='/delete/department/' + department.department_id) Delete
       else
         tr
           td(colspan="3") There are no departments

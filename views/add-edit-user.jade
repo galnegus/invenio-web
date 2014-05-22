@@ -19,7 +19,7 @@ block content-body
           td
             input.text(type='input', name='user_id', id='user_id', required, pattern='^[a-zA-Z0-9]{0,6}$', value=(edit ? edit.user_id : ''))
           td
-            input.text(type='input', name='password', id='password', required)
+            input.text(type='input', name='password', id='password', required=(edit ? false : true))
 
         tr
           td

@@ -1,0 +1,27 @@
+extends layout
+
+block selectedLink
+  -var selected = '/list/phone-number-types';
+
+block content-head
+  h1 Phone Number types
+  
+block content-body
+  table#list
+    thead
+      tr
+        th Phone number type
+        th.edit-col Edit
+        th.del-col Delete
+    tbody
+      if phone_number_types.length >  0
+        each phone_number_type, index in phone_number_types
+          tr
+            td= phone_number_type.phone_number_type
+            td
+              a.button(href='/edit/phone-number-type/' + phone_number_type.phone_number_type_id) Edit
+            td
+              a.button(href='/delete/phone-number-type/' + phone_number_type.phone_number_type_id) Delete
+      else
+        tr
+          td(colspan="3") There are no phone number types

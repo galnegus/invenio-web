@@ -13,12 +13,9 @@ html
       block selectedLink
         -var selected = '/';
 
-      -var nav = ['Edit/Delete', ['List Users', '/list/users'], ['List Roles', '/list/roles'], ['List Departments', '/list/departments'], ['List Rooms', '/list/rooms'], ['List Beacons', '/list/beacons'], 'Add', ['Add User', '/add/user'], ['Add Role', '/add/role'], ['Add Department', '/add/department'], ['Add Room', '/add/room'], ['Add Beacon', '/add/beacon']];
+      -var nav = ['Edit/Delete', ['List Users', '/list/users'], ['List Roles', '/list/roles'], ['List Departments', '/list/departments'], ['List Rooms', '/list/rooms'], ['List Beacons', '/list/beacons'], ['List Phone Number Types', '/list/phone-number-types'], 'Add', ['Add User', '/add/user'], ['Add Role', '/add/role'], ['Add Department', '/add/department'], ['Add Room', '/add/room'], ['Add Beacon', '/add/beacon'], ['Add Phone Number Type', '/add/phone-number-type']];
 
       div#sidebar
-        //div#logo
-        //  a(href='/')
-        //    img(src='/images/logo.png')
         div#navigation
           ul
             each val, index in nav

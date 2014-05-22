@@ -12,14 +12,14 @@ block content-body
       tbody
         tr
           td
-            label(for='major') Major
+            label(for='major')= 'Major ' + (edit ? '(read only)' : '')
           td
-            label(for='minor') Minor
+            label(for='minor')= 'Minor ' + (edit ? '(read only)' : '')
         tr
           td
-            input.text(type='input', name='major', id='major', required, value=(edit ? edit.major : ''))
+            input.text(type='input', name='major', id='major', required, readonly=(edit ? true : false), value=(edit ? edit.major : ''))
           td
-            input.text(type='input', name='minor', id='minor', required, value=(edit ? edit.minor : ''))
+            input.text(type='input', name='minor', id='minor', required, readonly=(edit ? true : false), value=(edit ? edit.minor : ''))
         tr
           td
             label(for='battery') Battery percentage (0 to 100)
@@ -35,10 +35,12 @@ block content-body
         tr
           td(colspan='2')
             label(for='room') Room (Department)
+              em  (leave as 'null' if beacon has no room yet)
 
         tr
           td(colspan='2')
             select.text(name='room', id='room', required)
+              option(value='{"default_room_name_id":null,"room_name":null,"department_id":null,"department_name":null}') null
               each room in rooms
                 option(selected=(edit ? (edit.room_name == room.room_name && edit.department_name == room.department_name ? true : false) : false), value=JSON.stringify(room))= room.room_name + ' (' + room.department_name + ')'
         tr

@@ -12,9 +12,10 @@ block content-body
       tr
         th User ID
         th First name
-        th Last Name
-        th Edit
-        th Delete
+        th Last name
+        th(colspan="2") Phone Numbers
+        th.edit-col Edit
+        th.del-col Delete
     tbody
       if users.length > 0
         each user, index in users
@@ -22,10 +23,14 @@ block content-body
             td= user.user_id
             td= user.first_name
             td= user.last_name
+            td.edit-col
+              a.button(href='/list/user-phone-numbers/' + user.user_id) List
+            td.edit-col
+              a.button(href='/add/user-phone-number/' + user.user_id) Add
             td
               a.button(href='/edit/user/' + user.user_id) Edit
             td
-              a.button(href='#') Delete
+              a.button(href='/delete/user/' + user.user_id) Delete
       else
         tr
           td(colspan="5") There are no users

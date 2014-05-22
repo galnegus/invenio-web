@@ -12,8 +12,8 @@ block content-body
       tr
         th Room Name
         th Department
-        th Edit
-        th Delete
+        th.edit-col Edit
+        th.del-col Delete
     tbody
       if rooms.length > 0
         each room, index in rooms
@@ -23,7 +23,7 @@ block content-body
             td
               a.button(href='/edit/room/' + room.default_room_name_id + '/' + room.department_id) Edit
             td
-              a.button(href='#') Delete
+              a.button(href='/delete/room/' + room.default_room_name_id + '/' + room.department_id) Delete
       else
         tr
           td(colspan="4") There are no rooms

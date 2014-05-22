@@ -11,8 +11,8 @@ block content-body
     thead
       tr
         th Role title
-        th Edit
-        th Delete
+        th.edit-col Edit
+        th.del-col Delete
     tbody
       if roles.length > 0
         each role, index in roles
@@ -21,7 +21,7 @@ block content-body
             td
               a.button(href='/edit/role/' + role.role_id) Edit
             td
-              a.button(href='#') Delete
+              a.button(href='/delete/role/' + role.role_id) Delete
       else
         tr
           td(colspan="3") There are no roles

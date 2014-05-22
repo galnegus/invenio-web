@@ -1,0 +1,27 @@
+extends layout
+
+block selectedLink
+  -var selected = '';
+
+block content-head
+  h1= (edit ? 'Edit Phone Number' : 'Add Phone Number')
+
+block content-body
+  form#add-edit(method='post')
+    table
+      tbody
+        tr
+          td
+            label(for='phone_number') Phone number
+          td
+            label(for='phone_number_type') Phone number type
+        tr
+          td
+            input.text(type='input', name='phone_number', id='phone_number', required, value=(edit ? phone_number : ''))
+          td
+            select.text(name='phone_number_type', id='phone_number_type', required)
+              each phone_number_type in phone_number_types
+                option(selected=(edit ? (edit.phone_number_type == phone_number_type.phone_number_type ? true : false) : false), value=phone_number_type.phone_number_type)= phone_number_type.phone_number_type
+        tr
+          td(colspan='2')
+            input.button(type='submit', value=(edit ? 'Update' : 'Add') + ' phone number')

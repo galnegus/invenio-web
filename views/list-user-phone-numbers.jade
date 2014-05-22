@@ -1,0 +1,33 @@
+extends layout
+
+block selectedLink
+  -var selected = '';
+
+block content-head
+  h1= 'Phone Numbers of ' + user_id
+
+block content-body
+  table#list
+    thead
+      tr
+        th Phone number
+        th Phone number type
+        th.edit-col Edit
+        th.del-col Delete
+    tbody
+      if phone_numbers.length > 0
+        each phone_number, index in phone_numbers
+          tr
+            td= phone_number.phone_number
+            td= phone_number.phone_number_type
+            td
+              a.button(href='/edit/user-phone-number/' + user_id + '/' + phone_number.phone_number) Edit
+            td
+              a.button(href='/delete/user-phone-number/' + user_id + '/' + phone_number.phone_number) Delete
+      else
+        tr
+          td(colspan="4") There are no phone number
+      tr
+        td(colspan="2")
+        td(colspan="2")
+          a.button(href='/add/user-phone-number/' + user_id) Add a phone number

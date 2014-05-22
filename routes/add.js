@@ -73,4 +73,31 @@ router.post('/user', function(req, res) {
   });
 });
 
+// phone number type
+router.get('/phone-number-type', function(req, res) {
+  res.render('add-edit-phone-number-type');
+});
+
+router.post('/phone-number-type', function(req, res) {
+  db.query('CALL addPhoneNumberType(' + db.pool.escape(req.body.phone_number_type) + ')')
+  .then(function(result) {
+    res.redirect('/list/phone-number-types');
+  });
+});
+
+// user phone number
+router.get('/user-phone-number/:user_id', function(req, res) {
+  db.query('CALL getAllPhoneNumberTypes')
+  .then(function(result) {
+    res.render('add-edit-user-phone-number', { phone_number_types: result[0][0] });
+  });
+});
+
+router.post('/user-phone-number/:user_id', function(req, res) {
+  db.query('CALL addUserPhoneNumber(' + db.pool.escape(req.params.user_id)  + ',' + db.pool.escape(req.body.phone_number) + ',' + db.pool.escape(req.body.phone_number_type) + ',' + db.pool.escape(0) + ')')
+  .then(function(result) {
+    res.redirect('/list/user-phone-numbers/' + req.params.user_id);
+  });
+});
+
 module.exports = router;
